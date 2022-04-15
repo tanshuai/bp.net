@@ -1,0 +1,14 @@
+- id: menu_item_home
+  translation: 主页
+- id: menu_item_blog
+  translation: 博客
+- id: menu_item_download
+  translation: 下载
+- id: menu_item_docs
+  translation: 文档
+- id: menu_item_support
+  translation: 技术支持
+- id: menu_item_community
+  translation: 社区
+- id: menu_item_about
+  translation: 关于

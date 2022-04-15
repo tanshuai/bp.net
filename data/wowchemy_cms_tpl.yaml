@@ -1,0 +1,186 @@
+locale: 'zh_Hans'
+
+backend:
+  name: git-gateway
+  branch: main
+  squash_merges: true
+media_folder: '/assets/media'
+public_folder: '/media'
+
+i18n:
+  structure: multiple_folders
+  locales: [en, zh-hans, zh-hant]
+  default_locale: en
+
+common:
+  ###################################################################
+  ##                        basic fields                           ##
+  ###################################################################
+
+  base:
+    config: &base-config
+      folder: 'content'
+      slug: '{{fields.slug}}'
+      summary: '{{fields.slug}}'
+      media_folder: '/assets/media/{{dirname}}'
+      public_folder: '/media/{{dirname}}'
+      i18n: true
+      create: true
+      delete: true
+
+    base-belong: &base-belong
+      label: "归属页面"
+      name: "belong"
+      i18n: false
+      widget: select
+      options: ["home", "blog", "about"]
+      required: true
+      hint: "选择组件所应用的页面"
+
+    base-slug: &base-slug
+      label: "ID"
+      name: "slug"
+      i18n: duplicate
+      widget: string
+      required: true
+      pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "不可包含空格、大写字母和特殊符号，可以用减号（-）分隔单词，并且允许使用数字。"]
+      hint: "该字段将作为链接和md文件的名称.请确保不同语言的同一组件具有相同的ID"
+
+  ###################################################################
+  ##                         post fields                           ##
+  ###################################################################
+  ##    lastMod:          datetime
+  ##    math:             boolean
+  ##    diagram:          boolean
+  ##    highlight:        boolean
+  ##    image.placement:  int
+  ###################################################################
+
+  post:
+    base-post-title: &base-post-title
+      label: 文章标题
+      name: title
+      widget: string
+      i18n: true
+      required: true
+    base-post-subtitle: &base-post-subtitle
+      label: 文章副标题
+      name: subtitle
+      widget: string
+      i18n: true
+      default: ''
+      required: false
+    base-post-body: &base-post-body
+      label: 文章内容
+      name: body
+      i18n: true
+      required: false
+      widget: markdown
+
+    base-post-date: &base-post-date
+      label: 发布时间
+      name: date
+      widget: datetime
+      i18n: duplicate
+      required: true
+
+    base-post-summary: &base-post-summary
+      label: 文章概述
+      name: summary
+      widget: markdown
+      i18n: true
+      required: false
+      hint: 该文本将作为一段简短的描述文本呈现在文章列表项中
+
+    base-post-draft: &base-post-draft
+      label: 作为草稿
+      name: draft
+      widget: boolean
+      i18n: duplicate
+      default: false
+      required: false
+      hint: 作为草稿的文章将不在网页上显示，仅保存在仓库中
+
+    base-post-authors: &base-post-authors
+      label: 作者
+      name: authors
+      widget: list
+      i18n: true
+      required: false
+      hint: 该选项可用于归档，若有多个作者可用英文逗号分隔，形如："张三,李四"
+
+    base-post-tags: &base-post-tags
+      label: 标签
+      name: tags
+      widget: list
+      i18n: true
+      required: false
+      hint: 该选项可用于归档，若有多个标签可用英文逗号分隔，形如："使用教程,入门"
+
+    base-post-categories: &base-post-categories
+      label: 分类
+      name: categories
+      widget: list
+      i18n: true
+      required: false
+      hint: 该选项可用于归档，若同属多个分类可用英文逗号分隔，形如："资讯,公告"
+
+    base-post-image: &base-post-image
+      label: "文章封面"
+      name: "image"
+      required: false
+      widget: object
+      i18n: true
+      fields:
+        - label: '上传一张图片作为封面'
+          name: filename
+          widget: image
+          i18n: true
+          default:
+          required: false
+          media_folder: '/assets/media/post'
+          public_folder: '/media/post'
+          media_library:
+            config:
+              multiple: false
+          hint: 图片将保存在"assets/media/post/<image>"
+
+  ###################################################################
+  ##                        blog configs                          ##
+  ###################################################################
+
+  blog:
+    config: &blog-config
+      label: 博客
+      label_singular: 博文
+      media_folder: '/assets/media/post'
+      public_folder: '/media/post'
+      name: blog
+      folder: content
+      slug: "{{fields.slug}}"
+      path: "blog/{{slug}}"
+      summary: '{{fields.slug}}'
+      filter: {field: belong, value: blog}
+      i18n: true
+      create: true
+      delete: true
+
+    blog-fields: &blog-fields
+      fields:
+        - <<: *base-belong
+        - <<: *base-slug
+
+        - <<: *base-post-title
+        - <<: *base-post-subtitle
+        - <<: *base-post-body
+        - <<: *base-post-date
+        - <<: *base-post-summary
+        - <<: *base-post-draft
+        - <<: *base-post-authors
+        - <<: *base-post-tags
+        - <<: *base-post-categories
+        - <<: *base-post-image
+
+collections:
+  - <<: *blog-config
+    <<: *blog-fields

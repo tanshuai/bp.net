@@ -1,0 +1,5 @@
+footer:
+  copyright:
+    notice: 'Copyright ©{year} Alphabiz. All Rights Reserved.'
+locale:
+  date_format: '2006年1月2日'

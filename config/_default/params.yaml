@@ -1,0 +1,133 @@
+# SITE SETUP
+# Guide: https://wowchemy.com/docs/getting-started/
+# Documentation: https://wowchemy.com/docs/
+# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+
+########################################################################################################################
+
+# Appearance
+appearance:
+  theme_day: alphabiz
+  theme_night: alphabiz
+font_size: L
+
+# Site header
+header:
+  navbar:
+    enable: true
+    align: r
+    highlight_active_link: true
+    show_language: true
+    show_translations: true
+    show_day_night: true
+    show_search: true
+    show_logo: true
+
+# external js
+plugins_js:
+  [alphabiz, particles]
+plugins_vendor:
+  []
+
+# contact footer
+contact:
+  email: "support@alpha.biz"
+  github: "https://github.com/tanshuai/alphabiz"
+  twitter: "https://twitter.com/tanshuai"
+#  linkedin: 'https://www.linkedin.com/company/chipchain/'
+#  facebook: 'https://www.facebook.com/Chipchain.Co'
+
+# cms config
+cms:
+  branch: main
+  local_backend: false
+
+########################################################################################################################
+
+sharing: false # post share
+
+# contact widget params
+#email:
+#phone: +86 139-2841-8769‬
+#address:
+#  street: Room 3003B, Tower A, GALAXY WORLD, No.1 Yabao Road, Bantian Street, Longgang District
+#  city: Shenzhen
+#  region:
+#  postcode:
+#  country: China
+#directions:
+#office_hours:
+#appointment_url:
+#map:
+#  provider: ''
+#  api_key: ''
+#  zoom: 15
+
+########################################################################################################################
+
+# SEO
+
+site_type: Person
+local_business_type: ''
+org_name: ''
+description: 'A highly-customizable Hugo blog theme powered by Wowchemy website builder.'
+twitter: 'wowchemy'
+
+
+# Localization
+date_format: '2006, Jan 2'
+time_format: '3:04 PM'
+
+# Site features
+
+highlight: true
+highlight_languages:
+  - r
+math: false
+diagram: false
+privacy_pack: false
+require_isotope: false  # Enable if you use Portfolio widget or Publication pages
+edit_page:
+  repo_url: ''
+  content_dir: ''
+  repo_branch: main
+  editable:
+    post: false
+show_related:
+  post: true
+sharing_image: ''
+reading_time: true
+section_pager: true
+#copyright_license:
+#  enable: true
+#  allow_derivatives: false
+#  share_alike: true
+#  allow_commercial: false
+#  notice: 'This work is licensed under {license}'
+avatar:
+  gravatar: false
+  shape: circle
+comments:
+  provider: ''
+  commentable:
+    post: true
+  disqus:
+    shortname: ''
+    show_count: true
+  commento:
+    url: ''
+search:
+  provider: wowchemy
+  algolia:
+    app_id: ''
+    api_key: ''
+    index_name: ''
+    show_logo: false
+marketing:
+  google_analytics: ''
+  google_tag_manager: ''
+  google_site_verification: ''
+icon:
+  pack:
+    ai: false
+

@@ -1,0 +1,11 @@
+{
+ "compilerOptions": {
+  "baseUrl": ".",
+  "paths": {
+   "*": [
+    "*",
+    "..\\..\\..\\..\\AppData\\Local\\Temp\\hugo_cache\\modules\\filecache\\modules\\pkg\\mod\\github.com\\zeeis\\hugo-enterprise@v0.1.20\\assets\\*"
+   ]
+  }
+ }
+}

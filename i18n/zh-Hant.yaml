@@ -1,0 +1,14 @@
+- id: menu_item_home
+  translation: 主頁
+- id: menu_item_blog
+  translation: 博客
+- id: menu_item_download
+  translation: 下載
+- id: menu_item_docs
+  translation: 檔案
+- id: menu_item_support
+  translation: 技術支援
+- id: menu_item_community
+  translation: 社區
+- id: menu_item_about
+  translation: 關於
