@@ -12,8 +12,8 @@ locale:
 
 # Appearance
 appearance:
-  theme_day: bp_net
-  theme_night: bp_net
+  theme_day: current_theme
+  theme_night: current_theme
 font_size: L
 
 # Site header

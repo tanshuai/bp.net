@@ -7,6 +7,5 @@ zh:
   contentDir: content/zh-hans
 
 zh-Hant:
-  languageCode: zh-Hant
   title: BP.NET 中文官網
   contentDir: content/zh-hant

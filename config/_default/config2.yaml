@@ -1,4 +1,0 @@
-main:
-  - name: test-item-1
-    url: /test-item-1
-    weight: 23
