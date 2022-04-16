@@ -69,7 +69,7 @@ common:
   ##    math:             boolean                                  ##
   ##    diagram:          boolean                                  ##
   ##    highlight:        boolean                                  ##
-  ##    image.placement:  int                                      ##
+  ##    image.placement:  number                                   ##
   ###################################################################
 
   post:
@@ -161,7 +161,12 @@ common:
               multiple: false
           hint: 图片将保存在"assets/media/post/<image>"
 
-    post-fields: &post-fields
+    config: &post-config
+      <<: *base-config
+      media_folder: '/assets/media/post'
+      public_folder: '/media/post'
+
+    fields: &post-fields
       fields:
         - <<: *base-belong
         - <<: *base-slug
@@ -178,20 +183,188 @@ common:
         - <<: *post-image
 
   ###################################################################
-  ##                        blog configs                          ##
+  ##                      configs | menus                          ##
   ###################################################################
+  menus: &config-menus
+    label: 菜单
+    name: menus
+    file: 'config/_default/menus.yaml'
+    fields:
+      - label: 菜单列表项
+        name: main
+        widget: list
+        fields:
+          - {label: 显示名称, name: name, widget: string, hint: "可填入“menu_item_xx”，在“i18n/xx.yaml”中配置国际化"}
+          - {label: 跳转链接, name: url, widget: string}
+          - {label: 权重, name: weight, widget: number, hint: "数字越小优先级越高"}
 
-  blog:
-    config: &blog-config
-      <<: *base-config
-      label: 博客
-      label_singular: 博文
-      media_folder: '/assets/media/post'
-      public_folder: '/media/post'
-      name: blog
-      path: "blog/{{slug}}"
-      filter: {field: belong, value: blog}
+  ###################################################################
+  ##                      configs | languages                      ##
+  ###################################################################
+  languages:
+    base-lang: &config-languages-base-lang
+      widget: object
+      fields:
+        - {label: 网站标题, name: title, widget: string, hint: '该文本将作为当前语言下的网站标题'}
+        - {label: 内容路径, name: contentDir, widget: string, hint: '当前语言下的网站内容对应的内容路径；此项请勿更改'}
+
+    main: &config-languages
+      label: 语言
+      name: languages
+      file: 'config/_default/languages.yaml'
+      fields:
+        - <<: *config-languages-base-lang
+          label: 英文
+          name: en
+        - <<: *config-languages-base-lang
+          label: 简体中文
+          name: zh
+        - <<: *config-languages-base-lang
+          label: 繁体中文
+          name: zh-Hant
+
+  ###################################################################
+  ##                      configs | params                         ##
+  ###################################################################
+  params:
+    xx: &config-params-xx-fields
+      fields:
+        - label: 本地化
+          name: locale
+          widget: object
+          fields:
+            - {label: 日期格式, name: date_format, widget: string, hint: "填入一个特定格式的任意日期的文本，网站将以此格式显示日期"}
+            - {label: 时间格式, name: time_format, widget: string, hint: "填入一个特定格式的任意时间的文本，网站将以此格式显示时间"}
+        - label: 页脚
+          name: footer
+          widget: object
+          fields:
+            - label: 版权
+              name: copyright
+              widget: object
+              fields:
+                - { label: 申明, name: notice, widget: string, hint: '可使用 “{year}” 表示当前年份' }
+    en: &config-params-en
+      <<: *config-params-xx-fields
+      label: 配置参数（en）
+      name: params-en
+      file: 'config/_default/params.en.yaml'
+    zh: &config-params-zh
+      <<: *config-params-xx-fields
+      label: 配置参数（zh）
+      name: params-zh
+      file: 'config/_default/params.zh.yaml'
+    zh-hant: &config-params-zh-hant
+      <<: *config-params-xx-fields
+      label: 配置参数（zh-hant）
+      name: params-zh-hant
+      file: 'config/_default/params.zh-Hant.yaml'
+
+  ###################################################################
+  ##                      configs | theme                          ##
+  ###################################################################
+  theme:
+    theme-color: &config-theme-color-fields
+      fields:
+        - {label: 主题颜色, name: primary, widget: color}
+        - {label: 背景颜色, name: background, widget: color}
+        - {label: 菜单 | 背景颜色, name: menu_primary, widget: string}
+        - {label: 菜单 | 标题文本颜色, name: menu_title, widget: color, hint: '菜单中标题文本的颜色；若在“assets/media/logo.png”配置了logo图片，则菜单标题文本被图片替代，此项无效'}
+        - {label: 菜单 | 常规文本颜色, name: menu_text, widget: color, hint: '菜单项目未激活的文本颜色'}
+        - {label: 菜单 | 激活文本颜色, name: menu_text_active, widget: color, hint: '菜单项目激活时的文本颜色；比如在“关于”页面则菜单的“关于”按钮文本显示为该颜色'}
+        - {label: 主页 | 奇数背景颜色, name: home_section_odd, widget: string, default: transparent, hint: '主页中第奇数个Section的背景颜色；默认为透明'}
+        - {label: 主页 | 偶数背景颜色, name: home_section_even, widget: string, default: transparent, hint: '主页中第偶数个Section的背景颜色；默认为透明'}
+
+    main: &config-theme
+      label: 主题
+      name: theme
+      file: 'data/themes/current_theme.yaml'
+      fields:
+        - {label: 主题名称, name: name, widget: string, hint: '请填入“current_theme”，请勿更改'}
+        - {label: 字体, name: font, widget: select, options: ["minimal"]}
+        - <<: *config-theme-color-fields
+          label: 浅色配色
+          name: light
+          widget: object
+        - <<: *config-theme-color-fields
+          label: 深色配色
+          name: dark
+          widget: object
+        - {label: 菜单 | 悬停, name: menu_hover, widget: boolean, hint: '为菜单中的按钮添加悬停效果'}
+        - {label: 菜单 | 描边, name: menu_border, widget: boolean}
+        - {label: 菜单 | 阴影, name: menu_shadow, widget: boolean}
+        - {label: 菜单 | 背景模糊, name: menu_blur, widget: boolean, hint: '若启用此效果前，则菜单背景颜色不能为不透明'}
 
 collections:
-  - <<: *blog-config
+
+  ###################################################################
+  ##                       special pages                           ##
+  ##---------------------------------------------------------------##
+  ## home, terms, about
+  ###################################################################
+  - <<: *post-fields
+
+    folder: content
+    slug: '{{fields.slug}}'
+    media_folder: '/assets/media'
+    public_folder: '/media'
+    i18n: true
+
+    label: 服务条款
+    name: terms
+    path: "terms"
+    filter: {field: slug, value: terms}
+
+
+  ###################################################################
+  ##                         folder pages                          ##
+  ##---------------------------------------------------------------##
+  ##  blog, product, service, press                                ##
+  ###################################################################
+  - <<: *post-config
     <<: *post-fields
+    label: 页面 | 博客
+    label_singular: 博文
+    name: blog
+    path: "blog/{{slug}}"
+    filter: {field: belong, value: blog}
+
+  - <<: *post-config
+    <<: *post-fields
+    label: 页面 | 产品
+    label_singular: 产品
+    name: product
+    path: "product/{{slug}}"
+    filter: {field: belong, value: product}
+
+  - <<: *post-config
+    <<: *post-fields
+    label: 页面 | 服务
+    label_singular: 服务
+    name: service
+    path: "service/{{slug}}"
+    filter: {field: belong, value: service}
+
+  - <<: *post-config
+    <<: *post-fields
+    label: 页面 | 资讯
+    label_singular: 资讯
+    name: press
+    path: "press/{{slug}}"
+    filter: {field: belong, value: press}
+
+  ###################################################################
+  ##                         config pages                          ##
+  ##---------------------------------------------------------------##
+  ##  theme, menus, languages, params                              ##
+  ###################################################################
+
+  - label: 配置文件
+    name: configs
+    files:
+      - <<: *config-theme
+      - <<: *config-menus
+      - <<: *config-languages
+      - <<: *config-params-en
+      - <<: *config-params-zh
+      - <<: *config-params-zh-hant
