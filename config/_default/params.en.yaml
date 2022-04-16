@@ -1,12 +1,12 @@
 # Localization
 locale:
   date_format: 'Jan 2, 2006'
-
+  time_format: '3:04 PM'
 # Site footer
 footer:
 #  text: 'a footer static text'
   copyright:
-    notice: 'Copyright ©{year} Alphabiz. All Rights Reserved.'
+    notice: 'Copyright ©{year} BP.NET. All Rights Reserved.'
 #  license:
 #    enable: true
 #    allow_commercial: false

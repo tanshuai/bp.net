@@ -1,0 +1,35 @@
+# Theme metadata
+name: bp_net
+
+font: minimal
+
+light:
+  primary: "#dca95a"
+  background: "#efefef"
+
+#  home_section_odd: "transparent"
+#  home_section_even: "transparent"
+
+#  menu_primary: "#efefef"
+  menu_primary: "#efefefd2"
+  menu_title: "#242424"
+  menu_text: "#242424"
+  menu_text_active: "#dca95a"
+
+dark:
+  primary: "#efab42"
+  background: "#242424"
+
+#  home_section_odd: "transparent"
+#  home_section_even: "transparent"
+
+  menu_primary: "#242424d2"
+  menu_title: "#efefef"
+  menu_text: "#efefef"
+  menu_text_active: "#efab42"
+
+
+menu_hover: true
+menu_border: true
+menu_shadow: false
+menu_blur: true

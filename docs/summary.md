@@ -94,6 +94,7 @@ Localization
 ```yaml
 locale:
   date_format: 'Jan 2, 2006'
+  time_format: '3:04 PM'
 ```
 
 Theme & FontSize
@@ -141,6 +142,7 @@ plugins_js:
 ```yaml
 locale:
   date_format: '2006年1月2日'
+  time_format: '3:04 PM'
 footer:
   copyright:
     notice: '版权所有 ©{year} BP.NET.'

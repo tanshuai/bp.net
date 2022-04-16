@@ -1,21 +1,11 @@
-
-baseurl: 'https://alpha.biz/' # Website URL
-
-############################
-## LANGUAGE
-############################
-
-defaultContentLanguage: en
-hasCJKLanguage: false
-defaultContentLanguageInSubdir: false
-removePathAccents: true
+baseurl: 'https://bp.net/' # Website URL
 
 ############################
 ## PERMALINKS
 ############################
 
 permalinks:
-  post: '/blog/:slug'
+  post: '/post/:slug'
   authors: '/author/:slug/'
   tags: '/tag/:slug/'
   categories: '/category/:slug/'
@@ -27,6 +17,15 @@ permalinks:
 module:
   imports:
     - path: github.com/zeeis/hugo-enterprise
+
+############################
+## LANGUAGE
+############################
+
+defaultContentLanguage: en
+hasCJKLanguage: false
+defaultContentLanguageInSubdir: false
+removePathAccents: true
 
 ############################
 ## ADVANCED

@@ -12,6 +12,18 @@ main:
     url: blog/
     weight: 20
 
+  - name: menu_item_product
+    url: product/
+    weight: 30
+
+  - name: menu_item_service
+    url: service/
+    weight: 40
+
+  - name: menu_item_press
+    url: press/
+    weight: 50
+
   - name: menu_item_about
     url: about/
     weight: 100

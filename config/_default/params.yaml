@@ -5,10 +5,15 @@
 
 ########################################################################################################################
 
+# Localization
+locale:
+  date_format: 'Jan 2, 2006'
+  time_format: '3:04 PM'
+
 # Appearance
 appearance:
-  theme_day: alphabiz
-  theme_night: alphabiz
+  theme_day: bp_net
+  theme_night: bp_net
 font_size: L
 
 # Site header
@@ -23,19 +28,22 @@ header:
     show_search: true
     show_logo: true
 
-# external js
+# Site footer
+footer:
+  #  text: 'a footer static text'
+  copyright:
+    notice: 'Copyright ©{year} Alphabiz. All Rights Reserved.'
+#  license:
+#    enable: true
+#    allow_commercial: false
+#    allow_derivatives: false
+#    share_alike: true
+
+# External js
 plugins_js:
-  [alphabiz, particles]
+  []
 plugins_vendor:
   []
-
-# contact footer
-contact:
-  email: "support@alpha.biz"
-  github: "https://github.com/tanshuai/alphabiz"
-  twitter: "https://twitter.com/tanshuai"
-#  linkedin: 'https://www.linkedin.com/company/chipchain/'
-#  facebook: 'https://www.facebook.com/Chipchain.Co'
 
 # cms config
 cms:
@@ -66,20 +74,13 @@ sharing: false # post share
 ########################################################################################################################
 
 # SEO
-
 site_type: Person
 local_business_type: ''
 org_name: ''
-description: 'A highly-customizable Hugo blog theme powered by Wowchemy website builder.'
-twitter: 'wowchemy'
-
-
-# Localization
-date_format: '2006, Jan 2'
-time_format: '3:04 PM'
+description: ''
+twitter: ''
 
 # Site features
-
 highlight: true
 highlight_languages:
   - r

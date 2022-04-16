@@ -2,13 +2,11 @@
   translation: Home
 - id: menu_item_blog
   translation: Blog
-- id: menu_item_download
-  translation: Download
-- id: menu_item_docs
-  translation: Docs
-- id: menu_item_support
-  translation: Support
-- id: menu_item_community
-  translation: Community
+- id: menu_item_product
+  translation: Products
+- id: menu_item_service
+  translation: Services
+- id: menu_item_press
+  translation: Press
 - id: menu_item_about
   translation: About

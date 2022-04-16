@@ -1,5 +1,6 @@
-footer:
-  copyright:
-    notice: 'Copyright ©{year} Alphabiz. All Rights Reserved.'
 locale:
   date_format: '2006年1月2日'
+  time_format: '3:04 PM'
+footer:
+  copyright:
+    notice: '版權所有 ©{year} BP.NET.'
