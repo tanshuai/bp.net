@@ -7,8 +7,8 @@ light:
   primary: "#dca95a"
   background: "#efefef"
 
-#  home_section_odd: "transparent"
-#  home_section_even: "transparent"
+  home_section_odd: "transparent"
+  home_section_even: "transparent"
 
 #  menu_primary: "#efefef"
   menu_primary: "#efefefd2"
@@ -20,8 +20,8 @@ dark:
   primary: "#efab42"
   background: "#242424"
 
-#  home_section_odd: "transparent"
-#  home_section_even: "transparent"
+  home_section_odd: "transparent"
+  home_section_even: "transparent"
 
   menu_primary: "#242424d2"
   menu_title: "#efefef"
