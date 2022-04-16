@@ -24,21 +24,23 @@ common:
     config: &base-config
       folder: content
       slug: '{{fields.slug}}'
-      summary: '{{fields.slug}}'
       #media_folder: '/assets/media/{{dirname}}'
       #public_folder: '/media/{{dirname}}'
       media_folder: '/assets/media'
       public_folder: '/media'
       i18n: true
-      create: true
-      delete: true
 
     belong: &base-belong
       label: 归属页面
       name: belong
       i18n: false
       widget: select
-      options: [home, blog, product, service, press, about]
+      options:
+        - { label: 主页, value: home }
+        - { label: 博客, value: blog }
+        - { label: 产品, value: product }
+        - { label: 服务, value: service }
+        - { label: 资讯, value: press }
       required: true
       hint: 当前组件或文章所归属的页面
 
@@ -79,6 +81,7 @@ common:
       widget: string
       i18n: true
       required: true
+
     subtitle: &post-subtitle
       label: 文章副标题
       name: subtitle
@@ -86,6 +89,7 @@ common:
       i18n: true
       default: ''
       required: false
+
     body: &post-body
       label: 文章内容
       name: body
@@ -163,24 +167,18 @@ common:
 
     config: &post-config
       <<: *base-config
+      summary: '{{fields.slug}}'
       media_folder: '/assets/media/post'
       public_folder: '/media/post'
+      create: true
+      delete: true
 
-    fields: &post-fields
-      fields:
-        - <<: *base-belong
-        - <<: *base-slug
-
-        - <<: *post-title
-        - <<: *post-subtitle
-        - <<: *post-body
-        - <<: *post-date
-        - <<: *post-summary
-        - <<: *post-draft
-        - <<: *post-authors
-        - <<: *post-tags
-        - <<: *post-categories
-        - <<: *post-image
+    config2: &spec-config
+      <<: *base-config
+      media_folder: '/assets/media/post'
+      public_folder: '/media/post'
+      create: false
+      delete: false
 
   ###################################################################
   ##                      configs | menus                          ##
@@ -196,7 +194,7 @@ common:
         fields:
           - {label: 显示名称, name: name, widget: string, hint: "可填入“menu_item_xx”，在“i18n/xx.yaml”中配置国际化"}
           - {label: 跳转链接, name: url, widget: string}
-          - {label: 权重, name: weight, widget: number, hint: "数字越小优先级越高"}
+          - {label: 权重, name: weight, widget: number, hint: "数字越小优先级越高", value_type: int, min: 10, max: 1000}
 
   ###################################################################
   ##                      configs | languages                      ##
@@ -206,7 +204,7 @@ common:
       widget: object
       fields:
         - {label: 网站标题, name: title, widget: string, hint: '该文本将作为当前语言下的网站标题'}
-        - {label: 内容路径, name: contentDir, widget: string, hint: '当前语言下的网站内容对应的内容路径；此项请勿更改'}
+        - {label: 内容路径, name: contentDir, widget: hidden, hint: '当前语言下的网站内容对应的内容路径；此项请勿更改'}
 
     main: &config-languages
       label: 语言
@@ -266,22 +264,22 @@ common:
   theme:
     theme-color: &config-theme-color-fields
       fields:
-        - {label: 主题颜色, name: primary, widget: color}
-        - {label: 背景颜色, name: background, widget: color}
-        - {label: 菜单 | 背景颜色, name: menu_primary, widget: string}
-        - {label: 菜单 | 标题文本颜色, name: menu_title, widget: color, hint: '菜单中标题文本的颜色；若在“assets/media/logo.png”配置了logo图片，则菜单标题文本被图片替代，此项无效'}
-        - {label: 菜单 | 常规文本颜色, name: menu_text, widget: color, hint: '菜单项目未激活的文本颜色'}
-        - {label: 菜单 | 激活文本颜色, name: menu_text_active, widget: color, hint: '菜单项目激活时的文本颜色；比如在“关于”页面则菜单的“关于”按钮文本显示为该颜色'}
-        - {label: 主页 | 奇数背景颜色, name: home_section_odd, widget: string, default: transparent, hint: '主页中第奇数个Section的背景颜色；默认为透明'}
-        - {label: 主页 | 偶数背景颜色, name: home_section_even, widget: string, default: transparent, hint: '主页中第偶数个Section的背景颜色；默认为透明'}
+        - {label: 主题颜色, name: primary, widget: color, allowInput: true}
+        - {label: 背景颜色, name: background, widget: color, allowInput: true}
+        - {label: 菜单 | 背景颜色, name: menu_primary, widget: color, allowInput: true, enableAlpha: true}
+        - {label: 菜单 | 标题文本颜色, name: menu_title, widget: color, hint: '菜单中标题文本的颜色；若在“assets/media/logo.png”配置了logo图片，则菜单标题文本被图片替代，此项无效', allowInput: true}
+        - {label: 菜单 | 常规文本颜色, name: menu_text, widget: color, hint: '菜单项目未激活的文本颜色', allowInput: true}
+        - {label: 菜单 | 激活文本颜色, name: menu_text_active, widget: color, hint: '菜单项目激活时的文本颜色；比如在“关于”页面则菜单的“关于”按钮文本显示为该颜色', allowInput: true}
+        - {label: 主页 | 奇数背景颜色, name: home_section_odd, widget: color, default: transparent, hint: '主页中第奇数个Section的背景颜色；默认为透明', allowInput: true, enableAlpha: true}
+        - {label: 主页 | 偶数背景颜色, name: home_section_even, widget: color, default: transparent, hint: '主页中第偶数个Section的背景颜色；默认为透明', allowInput: true, enableAlpha: true}
 
     main: &config-theme
       label: 主题
       name: theme
       file: 'data/themes/current_theme.yaml'
       fields:
-        - {label: 主题名称, name: name, widget: string, hint: '请填入“current_theme”，请勿更改'}
-        - {label: 字体, name: font, widget: select, options: ["minimal"]}
+        - {label: 主题名称, name: name, widget: hidden, default: "current_theme", hint: '请填入“current_theme”，请勿更改'}
+        - {label: 字体, name: font, widget: select, options: ["minimal", "mr_robot", "classic", "cyberpunk", "native", "rose"]}
         - <<: *config-theme-color-fields
           label: 浅色配色
           name: light
@@ -302,18 +300,20 @@ collections:
   ##---------------------------------------------------------------##
   ## home, terms, about
   ###################################################################
-  - <<: *post-fields
-
-    folder: content
-    slug: '{{fields.slug}}'
-    media_folder: '/assets/media'
-    public_folder: '/media'
-    i18n: true
-
+  - <<: *spec-config
     label: 服务条款
+    summary: 服务条款
     name: terms
     path: "terms"
-    filter: {field: slug, value: terms}
+    filter: {field: belong, value: terms}
+    fields:
+      - {name: belong, widget: hidden, default: terms}
+      - {name: slug, widget: hidden, default: terms}
+      - <<: *post-title
+      - <<: *post-subtitle
+      - <<: *post-body
+      - <<: *post-date
+      - <<: *post-image
 
 
   ###################################################################
@@ -322,36 +322,88 @@ collections:
   ##  blog, product, service, press                                ##
   ###################################################################
   - <<: *post-config
-    <<: *post-fields
     label: 页面 | 博客
     label_singular: 博文
     name: blog
     path: "blog/{{slug}}"
     filter: {field: belong, value: blog}
+    fields:
+      - {name: belong, widget: hidden, default: blog}
+      - <<: *base-slug
+
+      - <<: *post-title
+      - <<: *post-subtitle
+      - <<: *post-body
+      - <<: *post-date
+      - <<: *post-summary
+      - <<: *post-draft
+      - <<: *post-authors
+      - <<: *post-tags
+      - <<: *post-categories
+      - <<: *post-image
 
   - <<: *post-config
-    <<: *post-fields
     label: 页面 | 产品
     label_singular: 产品
     name: product
     path: "product/{{slug}}"
     filter: {field: belong, value: product}
+    fields:
+      - {name: belong, widget: hidden, default: product}
+      - <<: *base-slug
+
+      - <<: *post-title
+      - <<: *post-subtitle
+      - <<: *post-body
+      - <<: *post-date
+      - <<: *post-summary
+      - <<: *post-draft
+      - <<: *post-authors
+      - <<: *post-tags
+      - <<: *post-categories
+      - <<: *post-image
 
   - <<: *post-config
-    <<: *post-fields
     label: 页面 | 服务
     label_singular: 服务
     name: service
     path: "service/{{slug}}"
     filter: {field: belong, value: service}
+    fields:
+      - {name: belong, widget: hidden, default: service}
+      - <<: *base-slug
+
+      - <<: *post-title
+      - <<: *post-subtitle
+      - <<: *post-body
+      - <<: *post-date
+      - <<: *post-summary
+      - <<: *post-draft
+      - <<: *post-authors
+      - <<: *post-tags
+      - <<: *post-categories
+      - <<: *post-image
 
   - <<: *post-config
-    <<: *post-fields
     label: 页面 | 资讯
     label_singular: 资讯
     name: press
     path: "press/{{slug}}"
     filter: {field: belong, value: press}
+    fields:
+      - {name: belong, widget: hidden, default: press}
+      - <<: *base-slug
+
+      - <<: *post-title
+      - <<: *post-subtitle
+      - <<: *post-body
+      - <<: *post-date
+      - <<: *post-summary
+      - <<: *post-draft
+      - <<: *post-authors
+      - <<: *post-tags
+      - <<: *post-categories
+      - <<: *post-image
 
   ###################################################################
   ##                         config pages                          ##
