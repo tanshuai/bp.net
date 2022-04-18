@@ -5,7 +5,7 @@ subtitle: ""
 date: 2022-03-26T08:15:54.524Z
 draft: false
 image:
-  filename: /media/post/slawek-fedorczuk-slawek-fedorczuk-pleinairpril-d.jpg
+  filename: /media/post/terraform-studios-021022-totem-arrival2-qm.jpg
 ---
 歷經三年，從最初的構思到軟體的代碼編寫，今天我們宣佈一個全新的開源軟體 —— Alphabiz：去中心化的內容平臺即將發佈。
 
