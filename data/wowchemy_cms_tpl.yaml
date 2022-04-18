@@ -19,7 +19,6 @@ common:
   ##    belong:       string                                       ##
   ##    slug:         string                                       ##
   ###################################################################
-
   base:
     config: &base-config
       folder: content
@@ -73,7 +72,6 @@ common:
   ##    highlight:        boolean                                  ##
   ##    image.placement:  number                                   ##
   ###################################################################
-
   post:
     title: &post-title
       label: 文章标题
@@ -165,7 +163,7 @@ common:
               multiple: false
           hint: 图片将保存在"assets/media/post/<image>"
 
-    config: &post-config
+    config1: &post-config
       <<: *base-config
       summary: '{{fields.slug}}'
       media_folder: '/assets/media/post'
@@ -175,8 +173,6 @@ common:
 
     config2: &spec-config
       <<: *base-config
-      media_folder: '/assets/media/post'
-      public_folder: '/media/post'
       create: false
       delete: false
 
@@ -301,7 +297,6 @@ common:
         - {label: 菜单 | 背景模糊, name: menu_blur, widget: boolean, hint: '若启用此效果前，则菜单背景颜色不能为不透明'}
 
 collections:
-
   ###################################################################
   ##                       special pages                           ##
   ##---------------------------------------------------------------##
@@ -321,7 +316,6 @@ collections:
       - <<: *post-body
       - <<: *post-date
       - <<: *post-image
-
 
   ###################################################################
   ##                         folder pages                          ##
@@ -417,7 +411,6 @@ collections:
   ##---------------------------------------------------------------##
   ##  theme, menus, languages, params                              ##
   ###################################################################
-
   - label: 配置文件
     name: configs
     files:
@@ -427,3 +420,5 @@ collections:
       - <<: *config-params-en
       - <<: *config-params-zh
       - <<: *config-params-zh-hant
+
+  ###################################################################
