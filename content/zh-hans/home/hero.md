@@ -1,20 +1,20 @@
 ---
 weight: 10
 widget: hero
-title: hero_title
+title: 网站标题
 
 cta:
   url: https://github.com
   icon_pack: fas
   icon: download
-  label: cta_button
+  label: 按钮
 cta_alt:
   url: https://github.com
-  label: cta_alt
+  label: 链接
 cta_note:
-  label: cta_note
+  label: 文本
 
 #hero_media: hero.png
 
 ---
-hero_note
+简要描述
