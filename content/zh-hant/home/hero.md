@@ -20,7 +20,7 @@ design:
   flip: true
   background:
     opacity: 0.8
-    brightness: 1
+    brightness: 0.9
     image: background.jpg
 ---
 簡要描述
