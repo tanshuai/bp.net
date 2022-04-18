@@ -1,5 +1,5 @@
 name: current_theme
-font: cyberpunk
+font: minimal
 light:
   primary: "#1540bb"
   background: "#efefef"
