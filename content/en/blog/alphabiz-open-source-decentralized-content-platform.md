@@ -5,6 +5,8 @@ title: Alphabiz open source software of decentralized content platform
 subtitle: ""
 date: 2022-03-26T08:15:54.524Z
 draft: false
+image:
+  filename: /media/post/slawek-fedorczuk-slawek-fedorczuk-pleinairpril-d.jpg
 ---
 Today we are announcing a new open source decentralized content platform called Alphabiz, three years have passed from the initial idea to the writing of the software code.
 
