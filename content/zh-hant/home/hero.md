@@ -2,7 +2,7 @@
 weight: 10
 widget: hero
 title: 網站標題
-
+hero_media: hero.jpg
 cta:
   url: https://github.com
   icon_pack: fas
@@ -13,9 +13,6 @@ cta_alt:
   label: 連結
 cta_note:
   label: 文字
-
-hero_media: hero.jpg
-
 design:
   flip: true
   background:

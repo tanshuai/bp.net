@@ -1,11 +1,10 @@
 ---
 belong: home
 slug: hero
-
 weight: 10
 widget: hero
 title: Title
-
+hero_media: hero.jpg
 cta:
   url: https://github.com
   icon_pack: fas
@@ -16,9 +15,6 @@ cta_alt:
   label: Link
 cta_note:
   label: Note
-
-hero_media: hero.jpg
-
 design:
   flip: true
   background:
