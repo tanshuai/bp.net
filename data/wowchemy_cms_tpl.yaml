@@ -242,12 +242,13 @@ common:
               widget: object
               fields:
                 - { label: 申明, name: notice, widget: string, hint: '可使用 “{year}” 表示当前年份' }
-        - label: 分享
-          name: sharing
-          widget: list
-          fields:
-            - { label: 类别, name: type, widget: select, options: [email, github, twitter, facebook, linkedin]}
-            - { label: 链接, name: url, widget: string }
+            - label: 社交链接
+              name: social
+              hint: "页脚底部的相关社交链接"
+              widget: list
+              fields:
+                - { label: 类别, name: type, widget: select, options: [email, github, twitter, facebook, linkedin], hint: "社交链接所属平台"}
+                - { label: 链接, name: url, widget: string }
     en: &config-params-en
       <<: *config-params-xx-fields
       label: 配置参数（en）

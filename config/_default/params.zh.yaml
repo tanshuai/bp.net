@@ -4,7 +4,7 @@ locale:
 footer:
   copyright:
     notice: '版权所有 ©{year} BP.NET.'
-  sharing:
+  social:
     - type: email
       url: 'example@email'
     - type: github
