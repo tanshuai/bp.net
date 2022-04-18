@@ -298,6 +298,62 @@ common:
 
 collections:
   ###################################################################
+  ##                                                               ##
+  ###################################################################
+  - <<: *spec-config
+    label: 主页封面
+    summary: 主页封面
+    name: home-hero
+    path: "home/{{slug}}"
+    filter: {field: slug, value: hero}
+    fields:
+      - {name: belong, widget: hidden, default: home}
+      - {name: slug, widget: hidden, default: hero}
+      - {name: weight, widget: hidden, default: 10, i18n: duplicate}
+      - {name: widget, widget: hidden, default: hero, i18n: duplicate}
+      - {label: 封面标题, name: title, widget: string, i18n: true, required: true, default: "Title"}
+      - {label: 封面简介, name: body, widget: markdown, i18n: true}
+      - {name: hero_media, widget: hidden, i18n: duplicate, default: "hero.jpg"}
+      - label: CTA按钮
+        name: cta
+        widget: object
+        i18n: true
+        fields:
+          - {label: 图标包, name: icon_pack, widget: select, i18n: duplicate, default: fas, options: [fas, fab, far, fal], require: true}
+          - {label: 图标, name: icon, widget: string, i18n: duplicate}
+          - {label: 文本, name: label, widget: string, i18n: true, default: "Button", require: true}
+          - {label: 链接, name: url, widget: string, i18n: duplicate, default: "/", require: true}
+      - label: CTA链接
+        name: cta_alt
+        widget: object
+        i18n: true
+        fields:
+          - {label: 文本, name: label, widget: string, i18n: true}
+          - {label: 链接, name: url, widget: string, i18n: duplicate}
+      - label: CTA文本
+        name: cta_note
+        widget: object
+        i18n: true
+        fields:
+          - {label: 内容, name: label, widget: string, i18n: true}
+      - label: 设计
+        name: design
+        widget: object
+        i18n: true
+        fields:
+          - {label: 图片居左, name: flip, widget: boolean, i18n: duplicate, default: false, hint: "若有封面图片，将其显示在标题等内容的左侧" }
+          - label: 背景图片
+            name: background
+            widget: object
+            i18n: true
+            hint: "主页封面的背景图片，存放在 /assets/media/background.jpg"
+            fields:
+              - {label: 不透明度, name: opacity, widget: number, i18n: duplicate, default: 1, require: true}
+              - {label: 明度偏移, name: brightness, widget: number, i18n: duplicate, default: 1, require: true, hint: "为了让内容能清晰显示，背景图片会随着主题的深浅而调整明度，若出现过曝或过暗，可以调整此数值"}
+              - {name: image, widget: hidden, i18n: duplicate, default: "background.jpg"}
+
+
+  ###################################################################
   ##                       special pages                           ##
   ##---------------------------------------------------------------##
   ## home, terms, about
@@ -421,4 +477,3 @@ collections:
       - <<: *config-params-zh
       - <<: *config-params-zh-hant
 
-  ###################################################################
