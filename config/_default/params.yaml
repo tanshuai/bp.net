@@ -38,6 +38,17 @@ footer:
 #    allow_commercial: false
 #    allow_derivatives: false
 #    share_alike: true
+  sharing:
+    - type: email
+      url: 'example@email'
+    - type: github
+      url: 'https://github.com/'
+    - type: twitter
+      url: 'https://twitter.com/'
+    - type: linkedin
+      url: 'https://www.linkedin.com/'
+    - type: facebook
+      url: 'https://www.facebook.com/'
 
 # External js
 plugins_js:
