@@ -14,7 +14,13 @@ cta_alt:
 cta_note:
   label: 文字
 
-#hero_media: hero.png
+hero_media: hero.jpg
 
+design:
+  flip: true
+  background:
+    opacity: 0.8
+    brightness: 1
+    image: background.jpg
 ---
 簡要描述
