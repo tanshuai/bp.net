@@ -1,23 +1,23 @@
 name: current_theme
 font: cyberpunk
 light:
-  primary: "#5443d2"
+  primary: "#1540bb"
   background: "#efefef"
   home_section_odd: transparent
   home_section_even: transparent
   menu_primary: "#efefefd2"
   menu_title: "#242424"
   menu_text: "#242424"
-  menu_text_active: "#5443d2"
+  menu_text_active: "#1540bb"
 dark:
-  primary: "#3219f3"
+  primary: "#4f78ff"
   background: "#242424"
   home_section_odd: transparent
   home_section_even: transparent
   menu_primary: "#242424d2"
   menu_title: "#efefef"
   menu_text: "#efefef"
-  menu_text_active: "#3219f3"
+  menu_text_active: "#4f78ff"
 menu_hover: true
 menu_border: true
 menu_shadow: false
