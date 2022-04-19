@@ -153,7 +153,7 @@ common:
         - label: 上传一张图片作为封面
           name: filename
           widget: image
-          i18n: true
+          i18n: duplicate
           default:
           required: false
           media_folder: '/assets/media/post'
