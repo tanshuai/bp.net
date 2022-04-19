@@ -2,8 +2,7 @@
 belong: about-intro
 weight: 10
 widget: blank
-title: Intro
-subtitle: intro_subtitle
+title: Introduction
+subtitle: foobar
 ---
-
-intro_content
+Content
