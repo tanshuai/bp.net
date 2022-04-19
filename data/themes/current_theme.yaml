@@ -1,23 +1,23 @@
 name: current_theme
 font: minimal
 light:
-  primary: "#1540bb"
+  primary: "#0da8b0"
   background: "#efefef"
   home_section_odd: transparent
   home_section_even: transparent
   menu_primary: "#efefefd2"
   menu_title: "#242424"
   menu_text: "#242424"
-  menu_text_active: "#1540bb"
+  menu_text_active: "#0da8b0"
 dark:
-  primary: "#4f78ff"
+  primary: "#0fc9df"
   background: "#242424"
   home_section_odd: transparent
   home_section_even: transparent
   menu_primary: "#242424d2"
   menu_title: "#efefef"
   menu_text: "#efefef"
-  menu_text_active: "#4f78ff"
+  menu_text_active: "#0fc9df"
 menu_hover: true
 menu_border: true
 menu_shadow: false
