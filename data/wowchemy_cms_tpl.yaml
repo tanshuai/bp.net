@@ -188,9 +188,9 @@ common:
         name: main
         widget: list
         fields:
-          - {label: 显示名称, name: name, widget: string, hint: "可填入“menu_item_xx”，在“i18n/xx.yaml”中配置国际化"}
-          - {label: 跳转链接, name: url, widget: string}
-          - {label: 权重, name: weight, widget: number, hint: "数字越小优先级越高", value_type: int, min: 10, max: 1000}
+          - {label: 显示名称, name: name, widget: string, default: 'Menu Item', require: true, hint: "可填入“menu_item_xx”，在“i18n/xx.yaml”中配置国际化"}
+          - {label: 跳转链接, name: url, widget: string, default: '/', require: true}
+          - {label: 权重, name: weight, widget: number, default: 10, require: true, hint: "数字越小优先级越高", value_type: int, min: 10, max: 1000}
 
   ###################################################################
   ##                      configs | languages                      ##
@@ -199,8 +199,8 @@ common:
     base-lang: &config-languages-base-lang
       widget: object
       fields:
-        - {label: 网站标题, name: title, widget: string, hint: '该文本将作为当前语言下的网站标题'}
-        - {label: 内容路径, name: contentDir, widget: hidden, hint: '当前语言下的网站内容对应的内容路径；此项请勿更改'}
+        - {label: 网站标题, name: title, widget: string, require: true, hint: '该文本将作为当前语言下的网站标题'}
+        - {name: contentDir, widget: hidden}
 
     main: &config-languages
       label: 语言
@@ -227,8 +227,8 @@ common:
           name: locale
           widget: object
           fields:
-            - {label: 日期格式, name: date_format, widget: string, hint: "填入一个特定格式的任意日期的文本，网站将以此格式显示日期"}
-            - {label: 时间格式, name: time_format, widget: string, hint: "填入一个特定格式的任意时间的文本，网站将以此格式显示时间"}
+            - {label: 日期格式, name: date_format, widget: string, require: true, hint: "填入一个特定格式的任意日期的文本，网站将以此格式显示日期"}
+            - {label: 时间格式, name: time_format, widget: string, require: true, hint: "填入一个特定格式的任意时间的文本，网站将以此格式显示时间"}
         - label: 页脚
           name: footer
           widget: object
@@ -237,14 +237,14 @@ common:
               name: copyright
               widget: object
               fields:
-                - { label: 申明, name: notice, widget: string, hint: '可使用 “{year}” 表示当前年份' }
+                - { label: 申明, name: notice, widget: string, require: true, hint: '可使用 “{year}” 表示当前年份' }
             - label: 社交链接
               name: social
               hint: "页脚底部的相关社交链接"
               widget: list
               fields:
-                - { label: 类别, name: type, widget: select, options: [email, github, twitter, facebook, linkedin], hint: "社交链接所属平台"}
-                - { label: 链接, name: url, widget: string }
+                - { label: 类别, name: type, widget: select, default: "github", require: true, options: [email, github, twitter, facebook, linkedin], hint: "社交链接所属平台"}
+                - { label: 链接, name: url, widget: string, default: "/", require: true }
     en: &config-params-en
       <<: *config-params-xx-fields
       label: 配置参数（en）
@@ -267,12 +267,12 @@ common:
   theme:
     theme-color: &config-theme-color-fields
       fields:
-        - {label: 主题颜色, name: primary, widget: color, allowInput: true}
-        - {label: 背景颜色, name: background, widget: color, allowInput: true}
-        - {label: 菜单 | 背景颜色, name: menu_primary, widget: color, allowInput: true, enableAlpha: true}
-        - {label: 菜单 | 标题文本颜色, name: menu_title, widget: color, hint: '菜单中标题文本的颜色；若在“assets/media/logo.png”配置了logo图片，则菜单标题文本被图片替代，此项无效', allowInput: true}
-        - {label: 菜单 | 常规文本颜色, name: menu_text, widget: color, hint: '菜单项目未激活的文本颜色', allowInput: true}
-        - {label: 菜单 | 激活文本颜色, name: menu_text_active, widget: color, hint: '菜单项目激活时的文本颜色；比如在“关于”页面则菜单的“关于”按钮文本显示为该颜色', allowInput: true}
+        - {label: 主题颜色, name: primary, widget: color, require: true, allowInput: true}
+        - {label: 背景颜色, name: background, widget: color, require: true, allowInput: true}
+        - {label: 菜单 | 背景颜色, name: menu_primary, widget: color, require: true, allowInput: true, enableAlpha: true}
+        - {label: 菜单 | 标题文本颜色, name: menu_title, widget: color, require: true, hint: '菜单中标题文本的颜色；若在“assets/media/logo.png”配置了logo图片，则菜单标题文本被图片替代，此项无效', allowInput: true}
+        - {label: 菜单 | 常规文本颜色, name: menu_text, widget: color, require: true, hint: '菜单项目未激活的文本颜色', allowInput: true}
+        - {label: 菜单 | 激活文本颜色, name: menu_text_active, widget: color, require: true, hint: '菜单项目激活时的文本颜色；比如在“关于”页面则菜单的“关于”按钮文本显示为该颜色', allowInput: true}
         - {label: 主页 | 奇数背景颜色, name: home_section_odd, widget: color, default: transparent, hint: '主页中第奇数个Section的背景颜色；默认为透明', allowInput: true, enableAlpha: true}
         - {label: 主页 | 偶数背景颜色, name: home_section_even, widget: color, default: transparent, hint: '主页中第偶数个Section的背景颜色；默认为透明', allowInput: true, enableAlpha: true}
 
@@ -281,8 +281,8 @@ common:
       name: theme
       file: 'data/themes/current_theme.yaml'
       fields:
-        - {label: 主题名称, name: name, widget: hidden, default: "current_theme", hint: '请填入“current_theme”，请勿更改'}
-        - {label: 字体, name: font, widget: select, options: ["minimal", "mr_robot", "classic", "cyberpunk", "native", "rose"]}
+        - {label: 主题名称, name: name, widget: hidden, default: "current_theme"}
+        - {label: 字体, name: font, widget: select, require: true, options: ["minimal", "mr_robot", "classic", "cyberpunk", "native", "rose"]}
         - <<: *config-theme-color-fields
           label: 浅色配色
           name: light
@@ -298,17 +298,17 @@ common:
 
 collections:
   ###################################################################
-  ##                                                               ##
+  ##                          home hero                            ##
   ###################################################################
   - <<: *spec-config
-    label: 主页封面
-    summary: 主页封面
+    label: 主页 | 封面
+    summary: "{{fields.title}}"
     name: home-hero
     path: "home/{{slug}}"
-    filter: {field: slug, value: hero}
+    filter: {field: belong, value: home-hero}
     fields:
-      - {name: belong, widget: hidden, default: home}
-      - {name: slug, widget: hidden, default: hero}
+      - {name: belong, widget: hidden, default: home-hero}
+      - {name: slug, widget: hidden, default: hero, i18n: duplicate}
       - {name: weight, widget: hidden, default: 10, i18n: duplicate}
       - {name: widget, widget: hidden, default: hero, i18n: duplicate}
       - {label: 封面标题, name: title, widget: string, i18n: true, required: true, default: "Title"}
@@ -352,11 +352,26 @@ collections:
               - {label: 明度偏移, name: brightness, widget: number, i18n: duplicate, default: 1, require: true, hint: "为了让内容能清晰显示，背景图片会随着主题的深浅而调整明度，若出现过曝或过暗，可以调整此数值"}
               - {name: image, widget: hidden, i18n: duplicate, default: "background.jpg"}
 
+  ###################################################################
+  ##                         about intro                           ##
+  ###################################################################
+  - <<: *spec-config
+    label: 关于 | 介绍
+    summary: "{{fields.title}}"
+    name: about-intro
+    path: "about/{{slug}}"
+    filter: {field: belong, value: about-intro}
+    fields:
+      - {name: belong, widget: hidden, default: about-intro}
+      - {name: slug, widget: hidden, default: intro, i18n: duplicate}
+      - {name: weight, widget: hidden, default: 10, i18n: duplicate}
+      - {name: widget, widget: hidden, default: blank, i18n: duplicate}
+      - {label: 标题, name: title, widget: string, i18n: true, required: true, default: "Intro"}
+      - {label: 副标题, name: subtitle, widget: string, i18n: true}
+      - {label: 内容, name: body, widget: markdown, i18n: true}
 
   ###################################################################
-  ##                       special pages                           ##
-  ##---------------------------------------------------------------##
-  ## home, terms, about
+  ##                            terms                              ##
   ###################################################################
   - <<: *spec-config
     label: 服务条款
