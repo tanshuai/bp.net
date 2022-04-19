@@ -7,6 +7,5 @@ title: Introduction
 subtitle: foobar
 design:
   columns: "2"
-  flip: true
 ---
 Content
