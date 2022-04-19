@@ -154,7 +154,7 @@ common:
           name: filename
           widget: image
           i18n: duplicate
-          default:
+          default: ''
           required: false
           media_folder: '/assets/media/post'
           public_folder: '/media/post'
@@ -306,6 +306,7 @@ collections:
     name: home-hero
     path: "home/{{slug}}"
     filter: {field: belong, value: home-hero}
+    description: ""
     fields:
       - {name: belong, widget: hidden, default: home-hero}
       - {name: slug, widget: hidden, default: hero, i18n: duplicate}
@@ -313,7 +314,15 @@ collections:
       - {name: widget, widget: hidden, default: hero, i18n: duplicate}
       - {label: 封面标题, name: title, widget: string, i18n: true, required: true, default: "Title"}
       - {label: 封面简介, name: body, widget: markdown, i18n: true}
-      - {name: hero_media, widget: hidden, i18n: duplicate, default: "hero.jpg"}
+      - label: 封面图片
+        name: hero_media
+        widget: image
+        i18n: duplicate
+        media_folder: '/assets/media'
+        public_folder: '/media'
+        media_library:
+          config:
+            multiple: false
       - label: CTA按钮
         name: cta
         widget: object
@@ -346,47 +355,18 @@ collections:
             name: background
             widget: object
             i18n: true
-            hint: "主页封面的背景图片，存放在 /assets/media/background.jpg"
             fields:
-              - {label: 不透明度, name: opacity, widget: number, i18n: duplicate, default: 1, require: true}
-              - {label: 明度偏移, name: brightness, widget: number, i18n: duplicate, default: 1, require: true, hint: "为了让内容能清晰显示，背景图片会随着主题的深浅而调整明度，若出现过曝或过暗，可以调整此数值"}
-              - {name: image, widget: hidden, i18n: duplicate, default: "background.jpg"}
-
-  ###################################################################
-  ##                         about intro                           ##
-  ###################################################################
-  - <<: *spec-config
-    label: 关于 | 介绍
-    summary: "{{fields.title}}"
-    name: about-intro
-    path: "about/{{slug}}"
-    filter: {field: belong, value: about-intro}
-    fields:
-      - {name: belong, widget: hidden, default: about-intro}
-      - {name: slug, widget: hidden, default: intro, i18n: duplicate}
-      - {name: weight, widget: hidden, default: 10, i18n: duplicate}
-      - {name: widget, widget: hidden, default: blank, i18n: duplicate}
-      - {label: 标题, name: title, widget: string, i18n: true, required: true, default: "Intro"}
-      - {label: 副标题, name: subtitle, widget: string, i18n: true}
-      - {label: 内容, name: body, widget: markdown, i18n: true}
-
-  ###################################################################
-  ##                            terms                              ##
-  ###################################################################
-  - <<: *spec-config
-    label: 服务条款
-    summary: 服务条款
-    name: terms
-    path: "terms"
-    filter: {field: belong, value: terms}
-    fields:
-      - {name: belong, widget: hidden, default: terms}
-      - {name: slug, widget: hidden, default: terms}
-      - <<: *post-title
-      - <<: *post-subtitle
-      - <<: *post-body
-      - <<: *post-date
-      - <<: *post-image
+              - {label: 不透明度, name: opacity, widget: number, i18n: duplicate, value_type: float, step: 0.01, min: 0, max: 1, default: 1, require: true}
+              - {label: 明度偏移, name: brightness, widget: number, i18n: duplicate, value_type: float, step: 0.01, min: 0.35, max: 1.65, default: 1, require: true, hint: "为了让内容能清晰显示，背景图片会随着主题的深浅而调整明度，若出现过曝或过暗，可以调整此数值"}
+              - label: 背景图片
+                name: image
+                widget: image
+                i18n: duplicate
+                media_folder: '/assets/media'
+                public_folder: '/media'
+                media_library:
+                  config:
+                    multiple: false
 
   ###################################################################
   ##                         folder pages                          ##
@@ -478,12 +458,82 @@ collections:
       - <<: *post-image
 
   ###################################################################
+  ##                         about intro                           ##
+  ###################################################################
+  - <<: *spec-config
+    label: 关于 | 介绍
+    summary: "{{fields.title}}"
+    name: about-intro
+    path: "about/{{slug}}"
+    filter: {field: belong, value: about-intro}
+    description: 在关于页面中，标题名为"介绍"的内容块
+    fields:
+      - {name: belong, widget: hidden, default: about-intro}
+      - {name: slug, widget: hidden, default: intro, i18n: duplicate}
+      - {name: weight, widget: hidden, default: 10, i18n: duplicate}
+      - {name: widget, widget: hidden, default: blank, i18n: duplicate}
+      - {label: 标题, name: title, widget: string, i18n: true, required: true, default: "Intro"}
+      - {label: 副标题, name: subtitle, widget: string, i18n: true, default: '', required: false}
+      - {label: 内容, name: body, widget: markdown, i18n: true, required: true}
+      - label: 设计
+        name: design
+        widget: object
+        i18n: true
+        fields:
+          - {label: 排列方式, name: columns, widget: select, i18n: duplicate, options: [{label: "纵向", value: "1"}, {label: "横向", value: "2"}], hint: "标题和内容的排列方式"}
+
+  ###################################################################
+  ##                         about blanks                          ##
+  ###################################################################
+  - <<: *post-config
+    label: 关于 | 自定义内容
+    label_singular: 内容块
+    name: about
+    path: "about/{{slug}}"
+    filter: {field: belong, value: about}
+    description: 在"介绍"后追加自定义的内容块
+    fields:
+      - {name: belong, widget: hidden, default: about}
+      - <<: *base-slug
+      - {label: 权重, name: weight, widget: number, default: 15, step: 5, min: 15, max: 95, i18n: duplicate, hint: "数值越小排序越靠前"}
+      - {name: widget, widget: hidden, default: blank, i18n: duplicate}
+      - {label: 标题, name: title, widget: string, i18n: true, required: true}
+      - {label: 副标题, name: subtitle, widget: string, i18n: true, default: '', required: false}
+      - {label: 内容, name: body, widget: markdown, i18n: true, required: true}
+      - label: 设计
+        name: design
+        widget: object
+        i18n: true
+        fields:
+          - {label: 排列方式, name: columns, widget: select, i18n: duplicate, options: [{label: "纵向", value: "1"}, {label: "横向", value: "2"}], hint: "标题和内容的排列方式"}
+
+  ###################################################################
+  ##                            terms                              ##
+  ###################################################################
+  - <<: *spec-config
+    label: 服务条款
+    summary: 服务条款
+    name: terms
+    path: "terms"
+    description: "显示在网站下方的服务条款"
+    filter: {field: belong, value: terms}
+    fields:
+      - {name: belong, widget: hidden, default: terms}
+      - {name: slug, widget: hidden, default: terms}
+      - <<: *post-title
+      - <<: *post-subtitle
+      - <<: *post-body
+      - <<: *post-date
+      - <<: *post-image
+
+  ###################################################################
   ##                         config pages                          ##
   ##---------------------------------------------------------------##
   ##  theme, menus, languages, params                              ##
   ###################################################################
   - label: 配置文件
     name: configs
+    description: "可配置网站配色、字体、菜单样式、菜单内容、网站名称、日期格式、时间格式等内容"
     files:
       - <<: *config-theme
       - <<: *config-menus
