@@ -1,5 +1,6 @@
 ---
 belong: home-hero
+slug: hero
 weight: 10
 widget: hero
 title: Title
