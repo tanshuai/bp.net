@@ -1,6 +1,5 @@
 ---
-belong: about
-slug: intro
+belong: about-intro
 weight: 10
 widget: blank
 title: Intro
