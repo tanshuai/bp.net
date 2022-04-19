@@ -1,6 +1,5 @@
 ---
-belong: home
-slug: hero
+belong: home-hero
 weight: 10
 widget: hero
 title: Title

@@ -1,5 +1,4 @@
 ---
-slug: hero
 weight: 10
 widget: hero
 title: 網站標題
