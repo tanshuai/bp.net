@@ -497,8 +497,8 @@ collections:
       - <<: *base-slug
       - {label: 权重, name: weight, widget: number, default: 15, step: 5, min: 15, max: 95, i18n: duplicate, hint: "数值越小排序越靠前"}
       - {name: widget, widget: hidden, default: blank, i18n: duplicate}
-      - {label: 标题, name: title, widget: string, i18n: true, required: true}
-      - {label: 副标题, name: subtitle, widget: string, i18n: true, default: '', required: false}
+      - {label: 标题, name: title, widget: string, i18n: true, default: "Title", required: true}
+      - {label: 副标题, name: subtitle, widget: string, i18n: true, default: 'subtitle', required: false}
       - {label: 内容, name: body, widget: markdown, i18n: true, required: true}
       - label: 设计
         name: design
