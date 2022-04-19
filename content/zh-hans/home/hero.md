@@ -1,4 +1,5 @@
 ---
+slug: hero
 weight: 10
 widget: hero
 title: 网站的标题
