@@ -4,9 +4,9 @@ weight: 10
 widget: blank
 title: 介绍
 subtitle: 副标题
-
 design:
-  columns: "1"
+  columns: "2"
+  flip: true
 ---
 
 内容
