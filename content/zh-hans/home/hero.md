@@ -3,7 +3,7 @@ slug: hero
 weight: 10
 widget: hero
 title: 网站的标题
-hero_media: hero.jpg
+hero_media: /media/hero.jpg
 cta:
   url: https://github.com
   icon_pack: fas

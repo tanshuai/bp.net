@@ -4,7 +4,7 @@ slug: hero
 weight: 10
 widget: hero
 title: Title
-hero_media: hero.jpg
+hero_media: /media/hero.jpg
 cta:
   url: https://github.com
   icon_pack: fas
