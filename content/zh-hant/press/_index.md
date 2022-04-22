@@ -9,7 +9,7 @@ cms_exclude: true
 view: 3
 
 header:
-  hideOnScroll: true
+  hideOnScroll: false
   caption:
   image:
 ---
